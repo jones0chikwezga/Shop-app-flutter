@@ -9,12 +9,14 @@ class Myapp extends StatelessWidget {
   const Myapp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
     return MaterialApp(
       title: 'Shopping App',
       theme: ThemeData(
         fontFamily: 'Lato', 
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(254,206,1,1),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color.fromRGBO(254,206,1,1),
+          primary:  Color.fromRGBO(254,206,1,1),
         ),
        inputDecorationTheme: const InputDecorationTheme(
         hintStyle: TextStyle(
