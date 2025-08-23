@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app_flutter/global_variable.dart';
+import 'package:shop_app_flutter/product_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,7 +43,8 @@ late String selectedFilter ;
                  child: Text("Shoes\nCollection",style: TextStyle(fontWeight: FontWeight.bold,fontSize:35 ),
                            ),
                ),
-           Expanded(child: TextField(
+           Expanded(
+             child: TextField(
             decoration: InputDecoration(
               hintText: 'Search',
               prefixIcon: Icon(Icons.search),
@@ -66,13 +69,17 @@ late String selectedFilter ;
                   ),
                   child: GestureDetector (
                     onTap: () {
-                      selectedFilter = filter;
+
+                      setState(() {
+                      selectedFilter = filter; 
+                      });
+          
                     },
                   
                     child: Chip(
-                      backgroundColor: selectedFilter == filter ? Theme.of(context).colorScheme.primary:  Color.fromRGBO(245, 247, 249, 1),
-                      side: const BorderSide(
-                        color: const Color.fromRGBO(245, 247, 249, 1),
+                      backgroundColor: selectedFilter == filter ? Theme.of(context).colorScheme.primary:  Color.fromRGBO(214, 229, 244, 1),
+                      side: BorderSide(
+                        color: Color.fromRGBO(245, 247, 249, 1),
                       ),
                       label: Text (filter),
                       labelStyle: const TextStyle(fontSize: 16,) ,
@@ -86,8 +93,21 @@ late String selectedFilter ;
               } ,
             
             ),
-         )
-          ],
+         ),
+         Expanded(
+           child: ListView.builder(
+            itemCount: products.length ,
+            itemBuilder: (context, index) {
+              final product = products[index];
+              return ProductCard(
+                title: product['title'] as String,
+                price: product['price'] as double,
+                image: product['imageUrl'] as String,
+                );
+            },
+           ),
+         ),
+          ], 
         ),
       ),
         
